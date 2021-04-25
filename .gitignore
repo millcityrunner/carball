@@ -12,5 +12,5 @@ carball.egg*
 dist/
 *ipynb*
 
-!/carball/tests/replays/
+!/hiddenfigures/tests/replays/
 .vscode

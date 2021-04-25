@@ -52,12 +52,13 @@ Apple's decision to replace bash as the default shell may foreshadow the removal
 One of the main data structures used in carball is the pandas.DataFrame, to learn more, see [its wiki page](https://github.com/SaltieRL/carball/wiki/data_frame).
 
 Decompile and analyze a replay:
-```Python
-import carball
 
-analysis_manager = carball.analyze_replay_file('9EB5E5814D73F55B51A1BD9664D4CBF3.replay', 
-                                      output_path='9EB5E5814D73F55B51A1BD9664D4CBF3.json', 
-                                      overwrite=True)
+```Python
+import hiddenfigures
+
+analysis_manager = hiddenfigures.analyze_replay_file('9EB5E5814D73F55B51A1BD9664D4CBF3.replay',
+                                                     output_path='9EB5E5814D73F55B51A1BD9664D4CBF3.json',
+                                                     overwrite=True)
 proto_game = analysis_manager.get_protobuf_data()
 
 # you can see more example of using the analysis manager below
@@ -67,19 +68,20 @@ proto_game = analysis_manager.get_protobuf_data()
 Just decompile a replay to a JSON object:
 
 ```Python
-import carball
+import hiddenfigures
 
-_json = carball.decompile_replay('9EB5E5814D73F55B51A1BD9664D4CBF3.replay', 
-                                output_path='9EB5E5814D73F55B51A1BD9664D4CBF3.json', 
-                                overwrite=True)
+_json = hiddenfigures.decompile_replay('9EB5E5814D73F55B51A1BD9664D4CBF3.replay',
+                                       output_path='9EB5E5814D73F55B51A1BD9664D4CBF3.json',
+                                       overwrite=True)
 ```
 
 Analyze a JSON game object:
+
 ```Python
-import carball
+import hiddenfigures
 import gzip
-from carball.json_parser.game import Game
-from carball.analysis.analysis_manager import AnalysisManager
+from hiddenfigures.json_parser.game import Game
+from hiddenfigures.analysis.analysis_manager import AnalysisManager
 
 # _json is a JSON game object (from decompile_replay)
 game = Game()
@@ -87,7 +89,7 @@ game.initialize(loaded_json=_json)
 
 analysis_manager = AnalysisManager(game)
 analysis_manager.create_analysis()
-    
+
 # return the proto object in python
 proto_object = analysis_manager.get_protobuf_data()
 
@@ -115,16 +117,16 @@ Read the saved analysis files:
 
 ```python
 import gzip
-from carball.analysis.utils.pandas_manager import PandasManager
-from carball.analysis.utils.proto_manager import ProtobufManager
+from hiddenfigures.analysis.utils.pandas_manager import PandasManager
+from hiddenfigures.analysis.utils.proto_manager import ProtobufManager
 
 # read proto from file
 with open('output.pts', 'rb') as f:
-    proto_object = ProtobufManager.read_proto_out_from_file(f)
+  proto_object = ProtobufManager.read_proto_out_from_file(f)
 
 # read pandas dataframe from gzipped numpy array file
 with gzip.open('output.gzip', 'rb') as f:
-    dataframe = PandasManager.read_numpy_from_memory(f)
+  dataframe = PandasManager.read_numpy_from_memory(f)
 ```
 
 ### Command Line
@@ -132,13 +134,13 @@ with gzip.open('output.gzip', 'rb') as f:
 Carball comes with a command line tool to analyze replays. To use carball from the command line:
 
 ```bash
-carball -i 9EB5E5814D73F55B51A1BD9664D4CBF3.replay --json analysis.json
+hiddenfigures -i 9EB5E5814D73F55B51A1BD9664D4CBF3.replay --json analysis.json
 ```
 
 To get the analysis in both json and protobuf and also the compressed replay frame data frame:
 
 ```bash
-carball -i 9EB5E5814D73F55B51A1BD9664D4CBF3.replay --json analysis.json --proto analysis.pts --gzip frames.gzip
+hiddenfigures -i 9EB5E5814D73F55B51A1BD9664D4CBF3.replay --json analysis.json --proto analysis.pts --gzip frames.gzip
 ```
 
 #### Command Line Arguments
@@ -172,9 +174,9 @@ optional arguments:
 If you want to add a new stat it is best to do it in the advanced stats section of the pipeline.
 You should look at:
 
-[Stat base classes](carball/analysis/stats/stats.py)
+[Stat base classes](hiddenfigures/analysis/stats/stats.py)
 
-[Where you add a new stat](carball/analysis/stats/stats_list.py)
+[Where you add a new stat](hiddenfigures/analysis/stats/stats_list.py)
 
 If you want to see the output format of the stats created you can look [here](api)
 

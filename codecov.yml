@@ -13,7 +13,7 @@ coverage:
         threshold: 1
       carball:
         threshold: 0.5
-        flags: carball
+        flags: hiddenfigures
     patch: off
     changes: no
 
@@ -36,14 +36,14 @@ flags:
   carball:
     # only include files in the backend folder
     paths:
-      - "!carball/tests"
-      - carball/*
+      - "!hiddenfigures/tests"
+      - hiddenfigures/*
 ignore:
   - tests/*
-  - carball/tests/*
+  - hiddenfigures/tests/*
   - utils/tests/*
   - init.py
   - setup.py
   - command_line.py
-  - carball/controls/*
+  - hiddenfigures/controls/*
 

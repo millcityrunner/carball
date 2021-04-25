@@ -50,7 +50,7 @@ jobs:
       with:
         name: Carball Benchmarks ${{matrix.benchtest}}
         tool: 'pytest'
-        output-file-path: carball/tests/benchmarking/carball_benchmarking.json
+        output-file-path: hiddenfigures/tests/benchmarking/carball_benchmarking.json
         benchmark-data-dir-path: dev/bench/${{matrix.benchtest}}/
         # Use personal access token instead of GITHUB_TOKEN due to
         # https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869/highlight/false
